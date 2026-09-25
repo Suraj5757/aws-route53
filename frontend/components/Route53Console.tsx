@@ -5,6 +5,7 @@ import {
   ChevronDown,
   ChevronRight,
   CircleHelp,
+  Database,
   ExternalLink,
   FileText,
   Gauge,
