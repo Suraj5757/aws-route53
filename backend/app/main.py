@@ -1,4 +1,6 @@
+import os
 from contextlib import asynccontextmanager
+from urllib import response
 from fastapi import Depends, FastAPI, HTTPException, Response, Cookie
 from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy.orm import Session
@@ -35,9 +37,11 @@ app = FastAPI(
     lifespan=lifespan,
 )
 
+FRONTEND_URL = os.getenv("FRONTEND_URL", "http://localhost:3000")
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000"],
+    allow_origins=[FRONTEND_URL],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -56,11 +60,15 @@ def health():
 
 @app.post("/api/auth/login", response_model=UserResponse)
 def login(payload: LoginRequest, response: Response):
+    
+    is_production = FRONTEND_URL != "http://localhost:3000"
+
     response.set_cookie(
         key="session",
         value="route53-demo-session",
         httponly=True,
-        samesite="lax",
+        samesite="none" if is_production else "lax",
+        secure=is_production,
         max_age=60 * 60 * 24,
     )
     return {"email": payload.email, "name": payload.email.split("@")[0].title()}
