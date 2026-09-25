@@ -1,0 +1,30 @@
+# Python virtual environment
+backend/venv/
+
+# Python cache
+backend/__pycache__/
+backend/**/*.pyc
+__pycache__/
+*.pyc
+
+# SQLite database
+backend/route53.db
+backend/*.db
+
+# Node.js
+frontend/node_modules/
+frontend/.next/
+
+# Environment files
+.env
+backend/.env
+frontend/.env
+frontend/.env.local
+
+# IDE
+.vscode/
+.idea/
+
+# OS files
+.DS_Store
+Thumbs.db
