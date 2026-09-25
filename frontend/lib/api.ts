@@ -48,7 +48,7 @@ export type PageResult<T> = { items:T[]; page:number; page_size:number; total:nu
 
 export const api = {
   login: (email: string, password: string) =>
-    request("/auth/login", {
+    request<{ email: string; name: string }>("/auth/login", {
       method: "POST",
       body: JSON.stringify({ email, password })
     }),
