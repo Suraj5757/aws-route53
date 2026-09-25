@@ -1,4 +1,4 @@
-# AWS Route53 Clone
+# AWS Route53
 
 A functional Route53-style DNS management application built for the assignment.
 
@@ -26,7 +26,7 @@ A functional Route53-style DNS management application built for the assignment.
 ## Project Structure
 
 ```text
-aws-route53-clone/
+aws-route53/
 ├── frontend/
 │   ├── app/
 │   ├── components/
